@@ -1,0 +1,5 @@
+library('RZooRoH')
+tt <- zoodata('Labradors50x_SNPs4_PL.txt',zformat="gl",freqem=TRUE,min_maf = 0.01)
+mod14L <- zoomodel(K=14)
+Lab14L <- zoorun(mod14L,tt,vit=FALSE)
+save.image('Lab14L.RData')
