@@ -23,7 +23,7 @@ cd $SCRATCH
 ./makelowcov
 
 # modify depending on the desired coverage
-cat out_vcf_lcWGS_5x | sed 's/\t/ /g' | sed 's/chr//g' | awk '{$1=$1" "$1"_"$2}1' > out_vcf_lcWGS_0.5x_gen.txt
+cat out_vcf_lcWGS_0.5x | sed 's/\t/ /g' | sed 's/chr//g' | awk '{$1=$1" "$1"_"$2}1' > out_vcf_lcWGS_0.5x_gen.txt
 
 cp  out_* /scratch/ulg/genan/forneris/eval/lowcovWGS/.
 
