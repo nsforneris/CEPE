@@ -1,6 +1,6 @@
 # how to compute inbreeding using HBD classes upto a threshold T using the Viterbi approach 
 
-# ussage: Rscript pvit.R 'zr_6K_Array.RData'
+# usage: Rscript pvit.R 'zr_6K_Array.RData'
 
 library(data.table)
 
