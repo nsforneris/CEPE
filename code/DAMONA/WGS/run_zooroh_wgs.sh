@@ -25,5 +25,7 @@ cp $wdir/seq/$fi                        $SCRATCH/.
 
 /usr/bin/time -v Rscript run_zooroh_wgs.R $fi $SLURM_ARRAY_TASK_ID
 
+cp *.RData $wdir/seq/.
+
 # remove temporary files
 rm -rf $SCRATCH
