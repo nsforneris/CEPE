@@ -9,6 +9,8 @@
 #SBATCH --output=seqvcf_%a.out
 #
 module load Java/1.8.0_281
+module load releases/2022b
+module load BCFtools/1.17-GCC-12.2.0
 
 it=('1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' '13' '14' '15' '16' '17' '18' '19' '20' '21' '22' '23' '24' '25' '26' '27' '28' '29')
 
@@ -23,9 +25,13 @@ i=${it[${SLURM_ARRAY_TASK_ID}]}
 
 seqfile="chr"$i".vcf.gz"
 
-cp $dirhome"/"$seqfile       $SCRATCH/.
+cp $dirhome"/DAMONA132_CEPE_refined.vcf.gz"  $SCRATCH/.
+cp $dirhome"/DAMONA132_CEPE_refined.vcf.tbi"  $SCRATCH/.
 
 cd $SCRATCH
+
+  bcftools view -r chr${i} DAMONA132_CEPE_refined.vcf.gz -Oz -o $seqfile
+
   zcat $seqfile > vcf.vcf
 
   mkdir -p $SCRATCH'/TMP/'
