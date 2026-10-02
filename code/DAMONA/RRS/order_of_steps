@@ -1,0 +1,6 @@
+step 1 run_beagle.sh
+step 2 run RRS_panels_generation.sh (with RRS_panels_generation.R)
+step 3 run run_zooroh_rrs.R
+step 4 run RRS_panels_generation_lowcov.sh (with RRS_panels_generation_lowcov.R)
+step 5 run makeRRSlowcov.sh (with makeRRSlowcov.f90 and makeRRSlowcov.f90_seeds)
+step 6 run_zooroh_rrs_lowcov.R
