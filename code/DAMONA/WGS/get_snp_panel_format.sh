@@ -12,11 +12,6 @@ module load BCFtools/1.17-GCC-12.2.0
 
 # Extract/create the WGS genotype file from the filtered VCF data (8417679 biallelic SNPs)
 
-# WGS - AD format 
-bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%AD]\n' DAMONA132_CEPE_unrefined.vcf.gz -o Damona132_cepe_comma
-cat Damona132_cepe_comma | tr '\t' ' ' | sed 's/,/ /g' > Damona132_snp_AD
-rm Damona132_cepe_comma
-
 # WGS - ZooRoH's GT format
 zcat DAMONA132_CEPE_refined.vcf.gz \
   | tr '\t' ' ' | sed 's/"//g' \
@@ -34,7 +29,12 @@ zcat DAMONA132_CEPE_refined.vcf.gz \
   | awk '{sub(/^chr/, "", $1); print}' \
   | awk '{$1=$1" "$1"_"$2; print}' \
   > seq_evalset_gen.txt
- 
+
+# WGS - AD format 
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%AD]\n' DAMONA132_CEPE_unrefined.vcf.gz -o Damona132_cepe_comma
+cat Damona132_cepe_comma | tr '\t' ' ' | sed 's/,/ /g' > Damona132_snp_AD
+rm Damona132_cepe_comma
+
 # Arrays (medium density - 30K and low density - 6K)
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%GT]\n' DAMONA132_CEPE_unrefined.vcf.gz -o Damona132_cepe_gt
 cat Damona132_cepe_gt \
