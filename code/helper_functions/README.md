@@ -1,10 +1,15 @@
-# RZooRoH post-processing helpers
+# Helper functions
 
-Both scripts take an RZooRoH result `.RData` file as their first command-line argument.
+[← Main README](../../README.md)
 
-- `pvit.R` uses the Viterbi HBD segments and saves `pvit.RData`.
-- `pHBD.R` uses HBD probabilities and saves `pHBD.RData`.
+Post-processing of RZooRoH results, used after any of the analyses in [`DAMONA`](../DAMONA), [`Labradors`](../Labradors) or [`NordicRed`](../NordicRed).
 
-Example: `Rscript pvit.R 'zr_6K_Array.RData'` or `Rscript pHBD.R 'zr_6K_Array.RData'`.
+For each animal, both scripts compute the proportion of the genome in HBD classes up to each of the 14 thresholds (T = 2, 4, 8 … 16384).
 
-Run these after the relevant RZooRoH analysis. Each script writes its output to the current working directory.
+| Script | Based on | Output | Usage |
+|---|---|---|---|
+| `pHBD.R` | HBD probabilities | `pHBD.RData` | `Rscript pHBD.R zr_6K_Array.RData` |
+| `pvit.R` | HBD segments (Viterbi) | `pvit.RData` | `Rscript pvit.R zr_6K_Array.RData` |
+
+`pvit.R` needs HBD segments, so it cannot be used on runs with `vit = FALSE`, such as the Labrador runs. The output is written to the current working directory.
+
